@@ -26,6 +26,6 @@ public class Question {
 	private String correctOption;
 	
 	@ManyToOne
-	private CourseList courseList;
+	private Course courseList;
 	
 }

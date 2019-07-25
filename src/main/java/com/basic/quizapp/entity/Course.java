@@ -11,16 +11,13 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class RegisterUser {
+public class Course {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long Id;
-	private String firstName;
-	private String middleName;
-	private String lastName;
-	private String email;
-	private Long mobileNumber;
-	private String password;
-	private String gender;
+	private Long id;
+	
+	private String courseName;
+	
+
 }

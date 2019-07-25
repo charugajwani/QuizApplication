@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.basic.quizapp.dao.CourseDao;
-import com.basic.quizapp.entity.CourseList;
+import com.basic.quizapp.entity.Course;
 import com.basic.quizapp.request.CourseRequest;
 
 @Service
@@ -19,7 +19,7 @@ public class CourseService {
 	
 	public void submitCourse(CourseRequest courseRequest) {
 		
-		CourseList courseList = new CourseList();
+		Course courseList = new Course();
 		
 		courseList.setCourseName(courseRequest.getCourseName());
 		
@@ -27,11 +27,11 @@ public class CourseService {
 		
 	}
 	
-	public CourseList getCourseById(Long id) {
+	public Course getCourseById(Long id) {
 		return courseDao.getCourseById(id);
 	}
 	
-	public List<CourseList> getCourseList(){
+	public List<Course> getCourseList(){
 		return courseDao.getCourseList();
 	}
 }

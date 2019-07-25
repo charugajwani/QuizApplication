@@ -6,18 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.basic.quizapp.entity.Question;
-import com.basic.quizapp.repository.QuestionRepo;
+import com.basic.quizapp.repository.QuestionRepository;
 
 @Service
 public class QuestionDao {
 	
-	@Autowired QuestionRepo questionRepo;
+	@Autowired QuestionRepository questionRepository;
 	
 	public void submitQuestion(Question question) {
-		questionRepo.save(question);
+		questionRepository.save(question);
 	}
 	
 	public List<Question> getQuestions(){
-		return (List<Question>) questionRepo.findAll();
+		return (List<Question>) questionRepository.findAll();
 	}
 }

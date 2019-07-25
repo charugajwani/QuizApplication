@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.basic.quizapp.entity.CourseList;
+import com.basic.quizapp.entity.Course;
 import com.basic.quizapp.request.CourseRequest;
 import com.basic.quizapp.service.CourseService;
 
@@ -24,7 +24,7 @@ public class CourseController {
 	}
 	
 	@GetMapping("/getCourses")
-	public List<CourseList> getCourseList() {
+	public List<Course> getCourseList() {
 		return courseService.getCourseList();
 	}
 }

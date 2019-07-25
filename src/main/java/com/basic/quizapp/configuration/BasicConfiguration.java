@@ -6,8 +6,11 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
+import com.basic.quizapp.security.CustomAuthenticationFilter;
 import com.basic.quizapp.security.CustomAuthenticationProvider;
+import com.basic.quizapp.security.CustomAuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -31,7 +34,11 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
           .and()
           .formLogin().loginPage("/login").permitAll()
           .authenticationDetailsSource(customAuthDetailSource)
-          .loginProcessingUrl("/doLogin");
+          .loginProcessingUrl("/doLogin")
+          .successHandler(new CustomAuthenticationSuccessHandler())
+          .and()
+          .addFilterAfter(new CustomAuthenticationFilter(), BasicAuthenticationFilter.class)
+          .logout();
 //          .defaultSuccessUrl("/homepage", true)
 //          .and()
 //          .httpBasic();

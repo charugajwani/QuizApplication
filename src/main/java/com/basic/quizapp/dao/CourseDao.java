@@ -5,22 +5,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.basic.quizapp.entity.CourseList;
-import com.basic.quizapp.repository.CourseRepo;
+import com.basic.quizapp.entity.Course;
+import com.basic.quizapp.repository.CourseRepository;
 
 @Service
 public class CourseDao {
-	@Autowired CourseRepo courseRepo;
+	@Autowired CourseRepository courseRepository;
 	
-	public void submitCourse(CourseList courseList) {
-		courseRepo.save(courseList);
+	public void submitCourse(Course courseList) {
+		courseRepository.save(courseList);
 	}
 	
-	public List<CourseList> getCourseList(){
-		return (List<CourseList>) courseRepo.findAll();
+	public List<Course> getCourseList(){
+		return (List<Course>) courseRepository.findAll();
 	}
 	
-	public CourseList getCourseById(Long id) {
-		return courseRepo.findById(id);
+	public Course getCourseById(Long id) {
+		return courseRepository.findById(id);
 	}
 }

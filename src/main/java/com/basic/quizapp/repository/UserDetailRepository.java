@@ -5,9 +5,10 @@ import java.io.Serializable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.basic.quizapp.entity.RegisterUser;
+import com.basic.quizapp.entity.UserDetail;
 
 @Repository
-public interface RegisterUserRepo extends CrudRepository<RegisterUser, Serializable>{
+public interface UserDetailRepository extends CrudRepository<UserDetail, Serializable> {
 
+	public UserDetail findByUserId(Long userId);
 }

@@ -5,11 +5,9 @@ import java.io.Serializable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.basic.quizapp.entity.CourseList;
+import com.basic.quizapp.entity.Question;
 
 @Repository
-public interface CourseRepo extends CrudRepository<CourseList, Serializable>{
+public interface QuestionRepository extends CrudRepository<Question, Serializable>{
 
-	public CourseList findById(Long id);
-	
 }
