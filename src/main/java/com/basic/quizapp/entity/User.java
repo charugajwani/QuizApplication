@@ -16,7 +16,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long Id;
+	private Long id;
 	private String firstName;
 	private String middleName;
 	private String lastName;

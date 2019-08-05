@@ -7,13 +7,14 @@ import org.springframework.stereotype.Service;
 
 import com.basic.quizapp.dao.UserDao;
 import com.basic.quizapp.entity.User;
+import com.basic.quizapp.entity.UserDetail;
 import com.basic.quizapp.request.RegisterUserRequest;
 
 @Service
 @Transactional
 public class RegisterUserService {
 
-	@Autowired UserDao registerUserDao;
+	@Autowired UserDao userDao;
 	
 	public void registerNewUser(RegisterUserRequest newUserInfo) {
 		User user = new User();
@@ -25,6 +26,10 @@ public class RegisterUserService {
 		user.setPassword(newUserInfo.getPassword());
 		user.setMobileNumber(Long.parseLong(newUserInfo.getMobileNumber()));
 		
-		registerUserDao.registerUser(user);
+		user = userDao.registerUser(user);
+		
+		UserDetail userDetail = new UserDetail();
+		userDetail.setRole("ROLE_USER");
+		userDetail.setUser(user);
 	}
 }

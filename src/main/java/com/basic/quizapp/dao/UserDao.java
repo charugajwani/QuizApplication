@@ -11,7 +11,11 @@ public class UserDao {
 		
 	@Autowired UserRepository userRepository;
 	
-	public void registerUser(User user) {
-		userRepository.save(user);
+	public User registerUser(User user) {
+		return userRepository.save(user);
+	}
+	
+	public User getUserByEmail(String email) {
+		return userRepository.findByEmail(email);
 	}
 }

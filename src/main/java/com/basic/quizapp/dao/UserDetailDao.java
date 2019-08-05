@@ -14,4 +14,8 @@ public class UserDetailDao {
 	public UserDetail getUserDetails(Long userId) {
 		return userDetailRepository.findByUserId(userId);
 	}
+	
+	public UserDetail saveUserDetail(UserDetail userDetail) {
+		return userDetailRepository.save(userDetail);
+	}
 }

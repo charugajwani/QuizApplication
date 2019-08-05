@@ -10,4 +10,5 @@ import com.basic.quizapp.entity.User;
 @Repository
 public interface UserRepository extends CrudRepository<User, Serializable>{
 
+	public User findByEmail(String email);
 }
