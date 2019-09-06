@@ -21,7 +21,15 @@ public class SecurityService {
 		return false;
 	}
 	
-	public UserDetail getUserDetails(String username) {
+	public UserDetail getUserDetailsByToken(String authToken) {
+		UserDetail userDetail = userDetailService.getUserDetail(authToken);
+		if(userDetail != null && (userDetail.getCreatedTime() + userDetail.getExpiry() > System.currentTimeMillis())) {
+			return userDetail;
+		}
+		return null;
+	}
+	
+	public UserDetail getUserDetailsByUsername(String username) {
 		User user = userDao.getUserByEmail(username);
 		UserDetail userDetail = userDetailService.getUserDetail(user.getId());
 		return userDetail;

@@ -11,4 +11,6 @@ import com.basic.quizapp.entity.UserDetail;
 public interface UserDetailRepository extends CrudRepository<UserDetail, Serializable> {
 
 	public UserDetail findByUserId(Long userId);
+	
+	public UserDetail findByAuthToken(String authToken);
 }

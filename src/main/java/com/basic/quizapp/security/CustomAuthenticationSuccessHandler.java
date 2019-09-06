@@ -1,14 +1,12 @@
 package com.basic.quizapp.security;
 
 import java.io.IOException;
-import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
@@ -31,7 +29,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
       HttpServletResponse response, Authentication authentication)
       throws IOException {
   
-        String targetUrl = determineTargetUrl(authentication);
+        String targetUrl = "/authToken";
  
         if (response.isCommitted()) {
             System.out.println(
@@ -43,29 +41,23 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
  
-    protected String determineTargetUrl(Authentication authentication) {
-        boolean isUser = false;
-        boolean isAdmin = false;
-        Collection<? extends GrantedAuthority> authorities
-         = authentication.getAuthorities();
-        for (GrantedAuthority grantedAuthority : authorities) {
-            if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
-                isUser = true;
-                break;
-            } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
-                isAdmin = true;
-                break;
-            }
-        }
- 
-        if (isUser) {
-            return "/homepage";
-        } else if (isAdmin) {
-            return "/adminPanel";
-        } else {
-            throw new IllegalStateException();
-        }
-    }
+//    protected String determineTargetUrl(Authentication authentication) {
+//        boolean isUser = false;
+//        boolean isAdmin = false;
+//        Collection<? extends GrantedAuthority> authorities
+//         = authentication.getAuthorities();
+//        for (GrantedAuthority grantedAuthority : authorities) {
+//            if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
+//                isUser = true;
+//                break;
+//            } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+//                isAdmin = true;
+//                break;
+//            }
+//        }
+// 
+//        return "/authToken";
+//    }
  
     protected void clearAuthenticationAttributes(HttpServletRequest request) {
         HttpSession session = request.getSession(false);

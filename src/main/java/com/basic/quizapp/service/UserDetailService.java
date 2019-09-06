@@ -16,4 +16,12 @@ public class UserDetailService {
 	public UserDetail getUserDetail(Long userId) {
 		return userDetailDao.getUserDetails(userId);
 	}
+	
+	public UserDetail getUserDetail(String authToken) {
+		return userDetailDao.getUserDetail(authToken);
+	}
+	
+	public UserDetail saveUserDetail(UserDetail userDetail) {
+		return userDetailDao.saveUserDetail(userDetail);
+	}
 }

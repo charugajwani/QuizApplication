@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.basic.quizapp.security.CustomAuthenticationFilter;
 import com.basic.quizapp.security.CustomAuthenticationProvider;
@@ -28,19 +28,14 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-          .authorizeRequests().antMatchers("/resgisterUser").permitAll()
-          .anyRequest()
-          .authenticated()
+          .authorizeRequests().antMatchers("/quizApp/**").authenticated()
           .and()
           .formLogin().loginPage("/login").permitAll()
           .authenticationDetailsSource(customAuthDetailSource)
           .loginProcessingUrl("/doLogin")
           .successHandler(new CustomAuthenticationSuccessHandler())
           .and()
-          .addFilterAfter(new CustomAuthenticationFilter(), BasicAuthenticationFilter.class)
+          .addFilterAfter(new CustomAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
           .logout();
-//          .defaultSuccessUrl("/homepage", true)
-//          .and()
-//          .httpBasic();
     }
 }

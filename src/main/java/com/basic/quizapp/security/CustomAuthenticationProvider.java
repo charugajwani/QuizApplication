@@ -2,6 +2,9 @@ package com.basic.quizapp.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -15,11 +18,15 @@ import org.springframework.stereotype.Component;
 
 import com.basic.quizapp.entity.UserDetail;
 import com.basic.quizapp.service.SecurityService;
+import com.basic.quizapp.service.UserDetailService;
+import com.basic.quizapp.util.SessionVariables;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
  
 	@Autowired private SecurityService securityService;
+	@Autowired private UserDetailService userDetailService;
+	@Autowired private HttpServletRequest request;
 	
     @Override
     public Authentication authenticate(Authentication authentication) 
@@ -30,7 +37,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String password = customAuthDetails.getPassword();
         
         if(securityService.validatePassword(username, password)) {
-        	UserDetail userDetail = securityService.getUserDetails(username);
+        	String authToken = UUID.randomUUID().toString();
+        	request.getSession().setAttribute(SessionVariables.AUTH_TOKEN, authToken);
+        	UserDetail userDetail = securityService.getUserDetailsByUsername(username);
+        	userDetail.setAuthToken(authToken);
+        	userDetail.setCreatedTime(System.currentTimeMillis());
+        	userDetail.setExpiry(3600000l);
+        	userDetailService.saveUserDetail(userDetail);
         	Collection<GrantedAuthority> authorities = new ArrayList<>();
         	authorities.add(new SimpleGrantedAuthority(userDetail.getRole()));
             return new UsernamePasswordAuthenticationToken(authentication.getPrincipal(), authentication.getCredentials(), authorities);

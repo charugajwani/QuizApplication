@@ -18,4 +18,8 @@ public class UserDetailDao {
 	public UserDetail saveUserDetail(UserDetail userDetail) {
 		return userDetailRepository.save(userDetail);
 	}
+	
+	public UserDetail getUserDetail(String authToken) {
+		return userDetailRepository.findByAuthToken(authToken);
+	}
 }
