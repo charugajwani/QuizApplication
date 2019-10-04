@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.basic.quizapp.dao.CourseDao;
 import com.basic.quizapp.entity.Course;
-import com.basic.quizapp.request.CourseRequest;
 
 @Service
 @Transactional
@@ -17,11 +16,11 @@ public class CourseService {
 	
 	@Autowired CourseDao courseDao;
 	
-	public void submitCourse(CourseRequest courseRequest) {
+	public void submitCourse(String courseName) {
 		
 		Course courseList = new Course();
 		
-		courseList.setCourseName(courseRequest.getCourseName());
+		courseList.setCourseName(courseName);
 		
 		courseDao.submitCourse(courseList);
 		

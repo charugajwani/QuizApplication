@@ -1,0 +1,46 @@
+{
+  "dependencies": {
+    "@material-ui/core": "^4.4.2",
+    "autoprefixer": "^9.6.1",
+    "bootstrap": "^4.3.1",
+    "css-loader": "^3.2.0",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0",
+    "postcss-loader": "^3.0.0",
+    "precss": "^4.0.0",
+    "react": "^16.5.2",
+    "react-bootstrap": "^1.0.0-beta.12",
+    "react-dom": "^16.5.2",
+    "react-router-dom": "^5.0.1",
+    "rest": "^1.3.1",
+    "sass-loader": "^8.0.0",
+    "sockjs-client": "^1.0.3",
+    "stompjs": "^2.3.3",
+    "style-loader": "^1.0.0"
+  },
+  "scripts": {
+    "watch": "webpack --watch -d"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-proposal-class-properties"
+      ]
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-loader": "^8.0.2",
+    "babel-polyfill": "^6.0.16",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0"
+  }
+}

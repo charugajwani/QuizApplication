@@ -15,6 +15,9 @@ public class SecurityService {
 	
 	public boolean validatePassword(String username, String password) {
 		User user = userDao.getUserByEmail(username);
+		if(user == null) {
+			return false;
+		}
 		if(password.equals(user.getPassword())) {
 			return true;
 		}

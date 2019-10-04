@@ -26,7 +26,7 @@ public class QuestionService {
 		question.setOption3(questionRequest.getOption3());
 		question.setOption4(questionRequest.getOption4());
 		question.setCorrectOption(questionRequest.getCorrectOption());
-		question.setCourseList(courseService.getCourseById(Long.valueOf(questionRequest.getCourseId())));
+//		question.setCourseList(courseService.getCourseById(Long.valueOf(questionRequest.getCourseId())));
 		
 		questionDao.submitQuestion(question);
 	}

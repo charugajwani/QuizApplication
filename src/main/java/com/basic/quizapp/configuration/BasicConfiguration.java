@@ -34,6 +34,7 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
           .authenticationDetailsSource(customAuthDetailSource)
           .loginProcessingUrl("/doLogin")
           .successHandler(new CustomAuthenticationSuccessHandler())
+          .failureForwardUrl("/loginFailed")
           .and()
           .addFilterAfter(new CustomAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
           .logout();

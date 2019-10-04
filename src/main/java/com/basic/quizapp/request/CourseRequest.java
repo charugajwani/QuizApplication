@@ -7,7 +7,6 @@ import lombok.Setter;
 @Setter
 public class CourseRequest {
 	
-	private String id;
 	private String courseName;
 	
 }
